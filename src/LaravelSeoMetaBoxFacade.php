@@ -5,7 +5,7 @@ namespace Giuga\LaravelSeoMetaBox;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Gabrieliuga\LaravelSeoMetaBox\Skeleton\SkeletonClass
+ * @see \Giuga\LaravelSeoMetaBox\LaravelSeoMetaBox::addObjectOnPage()
  */
 class LaravelSeoMetaBoxFacade extends Facade
 {

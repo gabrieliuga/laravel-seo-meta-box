@@ -1,33 +1,22 @@
 <?php
 
-namespace Giuga\LaravelSeoMetaBox;
+namespace Giuga\LaravelSeoMetaBox\Tests;
 
 use Giuga\LaravelSeoMetaBox\Http\View\MetaboxComposer;
+use Giuga\LaravelSeoMetaBox\LaravelSeoMetaBox;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
-class LaravelSeoMetaBoxServiceProvider extends ServiceProvider
+class MockServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'laravel-seo-meta-box');
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
-
-        if ($this->app->runningInConsole()) {
-            // Publishing the config.
-            $this->publishes([
-                __DIR__ . '/../config/config.php' => config_path('meta-box.php'),
-            ], 'metabox-config');
-
-            // Publishing the views.
-            $this->publishes([
-                __DIR__ . '/../resources/views' => resource_path('views/vendor/laravel-seo-meta-box'),
-            ], 'metabox-views');
-        }
+        $this->loadViewsFrom(__DIR__ . '/data/views', 'test-seo-metabox');
+        $this->loadRoutesFrom(__DIR__ . '/data/routes.php');
 
         Blade::include('laravel-seo-meta-box::seo', 'metabox');
 

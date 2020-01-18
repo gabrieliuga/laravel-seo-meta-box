@@ -11,11 +11,13 @@ class CreateSeoTables extends Migration
         Schema::create('seo_meta', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('object_id')->nullable();
-            $table->string('slug')->nullable();
+            $table->string('slug')->unique();
             $table->string('type');
             $table->string('title')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();
+            $table->index('slug');
+            $table->index('type');
         });
     }
 

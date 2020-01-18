@@ -15,13 +15,19 @@ trait HasSeo
             $options = $model->getSeoOptions();
             $seo = Seo::firstOrNew([
                 'type' => get_class($model),
-                'object_id' => $model->id,
+                'object_id' => $model->{$model->primaryKey},
             ]);
             $seo->slug = $options->routePrefix ?? '';
             if ($options->hasSlug) {
                 $seo->slug .= $model->{$options->slugField};
+            } else {
+                $seo->slug .= $model->{$model->primaryKey};
             }
             $seo->save();
+        });
+
+        static::retrieved(function (Model $model) {
+            app()->make('laravel-seo-meta-box')->addObjectOnPage(get_class($model), $model->{$model->primaryKey});
         });
     }
 
