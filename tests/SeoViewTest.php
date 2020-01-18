@@ -41,7 +41,7 @@ class SeoViewTest extends TestCase
             [
                 'name' => 'Test 3',
                 'slug' => 'test-3',
-            ]
+            ],
         ]);
     }
 
