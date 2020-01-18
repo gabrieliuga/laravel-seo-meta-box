@@ -3,6 +3,7 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/gabrieliuga/laravel-seo-meta-box.svg?style=flat-square)](https://packagist.org/packages/gabrieliuga/laravel-seo-meta-box)
 [![Build Status](https://img.shields.io/travis/gabrieliuga/laravel-seo-meta-box/master.svg?style=flat-square)](https://travis-ci.org/gabrieliuga/laravel-seo-meta-box)
 [![Quality Score](https://img.shields.io/scrutinizer/g/gabrieliuga/laravel-seo-meta-box.svg?style=flat-square)](https://scrutinizer-ci.com/g/gabrieliuga/laravel-seo-meta-box)
+[![StyleCI](https://github.styleci.io/repos/234427810/shield?branch=master)](https://github.styleci.io/repos/234427810)
 [![Total Downloads](https://img.shields.io/packagist/dt/gabrieliuga/laravel-seo-meta-box.svg?style=flat-square)](https://packagist.org/packages/gabrieliuga/laravel-seo-meta-box)
 
 Adds ability to create custom titles / description on a per page basis. Includes usage of Twitter handles and Open Graph data for social sharing.
