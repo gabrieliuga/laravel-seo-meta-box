@@ -10,7 +10,7 @@ class LaravelSeoMetaBox
     {
         $this->objectsOnPage[] = [
             'type' => $type,
-            'id' => $id
+            'id' => $id,
         ];
     }
 

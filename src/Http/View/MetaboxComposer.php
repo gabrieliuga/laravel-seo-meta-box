@@ -14,7 +14,7 @@ class MetaboxComposer
     {
         $this->requestUrl = request()->getRequestUri();
         $this->seo = Seo::where('slug', $this->requestUrl)->first();
-        if (!$this->seo) {
+        if (! $this->seo) {
             $metaBox = app()->make('laravel-seo-meta-box')->getObjectOnPage();
             if ($metaBox) {
                 $this->seo = Seo::where('type', $metaBox['type'])->where('object_id', $metaBox['id'])->first();
@@ -29,7 +29,7 @@ class MetaboxComposer
             if ($this->seo->title) {
                 $title = $this->seo->title;
                 if (config('meta-box.use_app_name')) {
-                    $title .= config('meta-box.use_app_name_separator') . config('app.name');
+                    $title .= config('meta-box.use_app_name_separator').config('app.name');
                 }
             }
         }
