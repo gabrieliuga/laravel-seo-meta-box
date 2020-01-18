@@ -30,7 +30,7 @@ abstract class TestCase extends Orchestra
     {
         Schema::dropAllTables();
 
-        include_once __DIR__ . '/../database/migrations/2020_01_12_215032_create_seo_tables.php';
+        include_once __DIR__.'/../database/migrations/2020_01_12_215032_create_seo_tables.php';
 
         (new \CreateSeoTables())->up();
 

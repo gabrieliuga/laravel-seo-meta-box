@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Giuga\LaravelSeoMetaBox\Models;
-
 
 use Illuminate\Database\Eloquent\Model;
 

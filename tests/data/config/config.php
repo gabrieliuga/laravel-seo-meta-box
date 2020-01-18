@@ -5,5 +5,5 @@ return [
     'use_app_name_separator' => ' - ',
     'use_twitter' => true,
     'twitter_handle' => '@g_iuga',
-    'use_open_graph' => true
+    'use_open_graph' => true,
 ];

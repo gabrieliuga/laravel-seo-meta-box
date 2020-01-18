@@ -15,7 +15,7 @@ class LaravelSeoMetaBox
     }
 
     /**
-     * Retrieve the last object added to the page that can have Seo
+     * Retrieve the last object added to the page that can have Seo.
      */
     public function getObjectOnPage(): ?array
     {

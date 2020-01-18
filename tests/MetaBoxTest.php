@@ -2,7 +2,6 @@
 
 namespace Gabrieliuga\LaravelSeoMetaBox\Tests;
 
-
 use Giuga\LaravelSeoMetaBox\Models\Seo;
 use Giuga\LaravelSeoMetaBox\Tests\TestCase;
 use Giuga\LaravelSeoMetaBox\Tests\TestModelA;
@@ -39,7 +38,7 @@ class MetaBoxTest extends TestCase
         $modelA->save();
 
         /**
-         * Model relationship won't show the new slug so grab it from the database
+         * Model relationship won't show the new slug so grab it from the database.
          */
         $this->assertStringContainsString('a-new-slug', Seo::find($modelA->seo->id)->slug);
     }

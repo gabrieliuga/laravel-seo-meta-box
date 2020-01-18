@@ -15,8 +15,8 @@ class MockServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__ . '/data/views', 'test-seo-metabox');
-        $this->loadRoutesFrom(__DIR__ . '/data/routes.php');
+        $this->loadViewsFrom(__DIR__.'/data/views', 'test-seo-metabox');
+        $this->loadRoutesFrom(__DIR__.'/data/routes.php');
 
         Blade::include('laravel-seo-meta-box::seo', 'metabox');
 
@@ -31,7 +31,7 @@ class MockServiceProvider extends ServiceProvider
     public function register()
     {
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'meta-box');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'meta-box');
 
         // Register the main class to use with the facade
         $this->app->singleton('laravel-seo-meta-box', function () {

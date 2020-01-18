@@ -2,7 +2,6 @@
 
 namespace Gabrieliuga\LaravelSeoMetaBox\Tests;
 
-
 use Giuga\LaravelSeoMetaBox\Tests\TestCase;
 
 class ProviderTest extends TestCase

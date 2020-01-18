@@ -14,7 +14,7 @@ class SeoViewTest extends TestCase
     {
         return [
             'Giuga\LaravelSeoMetaBox\LaravelSeoMetaBoxServiceProvider',
-            'Giuga\LaravelSeoMetaBox\Tests\MockServiceProvider'
+            'Giuga\LaravelSeoMetaBox\Tests\MockServiceProvider',
         ];
     }
 
@@ -26,7 +26,7 @@ class SeoViewTest extends TestCase
                 'slug' => '/test',
                 'title' => 'Example Title',
                 'description' => 'Example Description',
-                'type' => 'page'
+                'type' => 'page',
             ]
         );
         TestModelA::insert([
@@ -61,7 +61,7 @@ class SeoViewTest extends TestCase
     public function testRouteHasDefaultSeo()
     {
         $this->get('test-no-custom-seo')
-            ->assertSee("<title>Laravel</title>")
+            ->assertSee('<title>Laravel</title>')
             ->assertSee('<meta name="twitter:card" content="summary">')
             ->assertSee('<meta property="og:type" content="article" />');
     }
@@ -70,7 +70,7 @@ class SeoViewTest extends TestCase
     public function testRouteHasModelSeo()
     {
         $this->get('test')
-            ->assertSee("<title>Example Title - Laravel</title>")
+            ->assertSee('<title>Example Title - Laravel</title>')
             ->assertSee('<meta name="twitter:card" content="summary">')
             ->assertSee('<meta property="og:description" content="Example Description" />')
             ->assertSee('<meta property="og:type" content="article" />');
@@ -87,11 +87,11 @@ class SeoViewTest extends TestCase
 
         $viewData = $view->getData();
         $this->assertIsArray($view->getData());
-        $this->assertArrayHasKey("seoUseTwitter", $viewData);
-        $this->assertArrayHasKey("seoTwitterHandle", $viewData);
-        $this->assertArrayHasKey("seoTitle", $viewData);
-        $this->assertArrayHasKey("seoDescription", $viewData);
-        $this->assertArrayHasKey("seoUseOpenGraph", $viewData);
-        $this->assertArrayHasKey("seoFullUrl", $viewData);
+        $this->assertArrayHasKey('seoUseTwitter', $viewData);
+        $this->assertArrayHasKey('seoTwitterHandle', $viewData);
+        $this->assertArrayHasKey('seoTitle', $viewData);
+        $this->assertArrayHasKey('seoDescription', $viewData);
+        $this->assertArrayHasKey('seoUseOpenGraph', $viewData);
+        $this->assertArrayHasKey('seoFullUrl', $viewData);
     }
 }
