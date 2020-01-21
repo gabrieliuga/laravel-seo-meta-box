@@ -6,6 +6,9 @@ use Giuga\LaravelSeoMetaBox\Http\View\MetaboxComposer;
 use Giuga\LaravelSeoMetaBox\Models\Seo;
 use Giuga\LaravelSeoMetaBox\Tests\TestCase;
 use Giuga\LaravelSeoMetaBox\Tests\TestModelA;
+use Giuga\LaravelSeoMetaBox\Tests\TestModelAWithDescription;
+use Giuga\LaravelSeoMetaBox\Tests\TestModelAWithTitle;
+use Giuga\LaravelSeoMetaBox\Tests\TestModelB;
 use Illuminate\View\View;
 
 class SeoViewTest extends TestCase
@@ -103,5 +106,65 @@ class SeoViewTest extends TestCase
         $this->assertArrayHasKey('seoDescription', $viewData);
         $this->assertArrayHasKey('seoUseOpenGraph', $viewData);
         $this->assertArrayHasKey('seoFullUrl', $viewData);
+    }
+
+    /** @test */
+    public function testSeoHasDefaultTitle()
+    {
+        $this->cleanDB();
+        TestModelAWithTitle::create([
+            'name' => 'Test Name 1',
+            'description' => 'Test description 1',
+            'slug' => 'test-name-1'
+        ]);
+        $model = TestModelAWithTitle::where('slug', 'test-name-1')->first();
+        $this->assertInstanceOf(TestModelAWithTitle::class, $model);
+        $this->assertEquals('Test Name 1', $model->seo->title);
+    }
+
+    /** @test */
+    public function testSeoHasUpdatedTitleAfterModelUpdate()
+    {
+        $this->cleanDB();
+        TestModelAWithDescription::create([
+            'name' => 'Test Name 1',
+            'description' => 'Test description 1',
+            'slug' => 'test-name-1'
+        ]);
+        $model = TestModelAWithDescription::where('slug', 'test-name-1')->first();
+        $model->name = 'Test name 2';
+        $model->save();
+
+        $this->assertInstanceOf(TestModelAWithDescription::class, $model);
+        $seoModel = Seo::where('type', get_class($model))->where('object_id', $model->id)->first();
+        $this->assertEquals('Test name 2', $seoModel->title);
+        $this->assertEquals('Test description 1', $seoModel->description);
+    }
+
+    /** @test */
+    public function testSeoHasOriginalTitleAfterModelUpdate()
+    {
+        $this->cleanDB();
+        TestModelAWithTitle::create([
+            'name' => 'Test Name 1',
+            'description' => 'Test description 1',
+            'slug' => 'test-name-1'
+        ]);
+        $model = TestModelAWithTitle::where('slug', 'test-name-1')->first();
+        $model->name = 'Test name 2';
+        $model->save();
+
+        $this->assertInstanceOf(TestModelAWithTitle::class, $model);
+        $seoModel = Seo::where('type', get_class($model))->where('object_id', $model->id)->first();
+        $this->assertEquals('Test Name 1', $seoModel->title);
+    }
+
+    private function cleanDB()
+    {
+        Seo::truncate();
+        TestModelA::truncate();
+        TestModelB::truncate();
+        TestModelAWithTitle::truncate();
+        TestModelAWithDescription::truncate();
     }
 }

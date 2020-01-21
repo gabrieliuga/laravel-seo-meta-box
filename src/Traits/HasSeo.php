@@ -23,6 +23,12 @@ trait HasSeo
             } else {
                 $seo->slug .= $model->{$model->primaryKey};
             }
+            if ((empty($seo->title) || $options->overwriteOnUpdate) && isset($options->titleField)) {
+                $seo->title = $model->{$options->titleField};
+            }
+            if ((empty($seo->description) || $options->overwriteOnUpdate) && isset($options->descriptionField)) {
+                $seo->description = $model->{$options->descriptionField};
+            }
             $seo->save();
         });
 

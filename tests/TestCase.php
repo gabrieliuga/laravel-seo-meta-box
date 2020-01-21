@@ -37,12 +37,14 @@ abstract class TestCase extends Orchestra
         $app['db']->connection()->getSchemaBuilder()->create('test_model_a', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
+            $table->string('description')->nullable();
             $table->string('slug')->nullable();
         });
 
         $app['db']->connection()->getSchemaBuilder()->create('test_model_b', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
+            $table->string('description')->nullable();
         });
     }
 }
