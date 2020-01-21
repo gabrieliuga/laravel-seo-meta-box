@@ -13,11 +13,18 @@ class MetaboxComposer
     public function __construct()
     {
         $this->requestUrl = request()->getRequestUri();
+        $query = request()->getQueryString();
+        if ($query !== null) {
+            $query = '?'.$query;
+        }
         $this->seo = Seo::where('slug', $this->requestUrl)->first();
         if (! $this->seo) {
-            $metaBox = app()->make('laravel-seo-meta-box')->getObjectOnPage();
-            if ($metaBox) {
-                $this->seo = Seo::where('type', $metaBox['type'])->where('object_id', $metaBox['id'])->first();
+            $this->seo = Seo::where('slug', str_replace($query, '', $this->requestUrl))->first();
+            if (! $this->seo) {
+                $metaBox = app()->make('laravel-seo-meta-box')->getObjectOnPage();
+                if ($metaBox) {
+                    $this->seo = Seo::where('type', $metaBox['type'])->where('object_id', $metaBox['id'])->first();
+                }
             }
         }
     }

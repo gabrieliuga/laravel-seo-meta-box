@@ -77,6 +77,16 @@ class SeoViewTest extends TestCase
     }
 
     /** @test */
+    public function testRouteHasModelSeoForPaginatedRequest()
+    {
+        $this->get('test?page=2')
+            ->assertSee('<title>Example Title - Laravel</title>')
+            ->assertSee('<meta name="twitter:card" content="summary">')
+            ->assertSee('<meta property="og:description" content="Example Description" />')
+            ->assertSee('<meta property="og:type" content="article" />');
+    }
+
+    /** @test */
     public function testComposerReturnsNewData()
     {
         $composer = new MetaboxComposer();
