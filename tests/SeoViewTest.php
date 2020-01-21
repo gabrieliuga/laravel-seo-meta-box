@@ -115,7 +115,7 @@ class SeoViewTest extends TestCase
         TestModelAWithTitle::create([
             'name' => 'Test Name 1',
             'description' => 'Test description 1',
-            'slug' => 'test-name-1'
+            'slug' => 'test-name-1',
         ]);
         $model = TestModelAWithTitle::where('slug', 'test-name-1')->first();
         $this->assertInstanceOf(TestModelAWithTitle::class, $model);
@@ -129,7 +129,7 @@ class SeoViewTest extends TestCase
         TestModelAWithDescription::create([
             'name' => 'Test Name 1',
             'description' => 'Test description 1',
-            'slug' => 'test-name-1'
+            'slug' => 'test-name-1',
         ]);
         $model = TestModelAWithDescription::where('slug', 'test-name-1')->first();
         $model->name = 'Test name 2';
@@ -148,7 +148,7 @@ class SeoViewTest extends TestCase
         TestModelAWithTitle::create([
             'name' => 'Test Name 1',
             'description' => 'Test description 1',
-            'slug' => 'test-name-1'
+            'slug' => 'test-name-1',
         ]);
         $model = TestModelAWithTitle::where('slug', 'test-name-1')->first();
         $model->name = 'Test name 2';
