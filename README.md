@@ -50,8 +50,11 @@ class Page extends Model
     public function getSeoOptions(): SeoOptions
     {
         return SeoOptions::create()
-            ->setSlugField('slug')
-            ->setRoutePrefix('/page/');
+            ->setSlugField('slug') // optional
+            ->setRoutePrefix('/page/') // optional
+            ->setTitleField('name') // optional
+            ->setDescriptionField('short_description') // optional
+            ->setOverwriteOnUpdate(); // optional
     }
 }
 

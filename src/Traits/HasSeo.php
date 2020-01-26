@@ -23,11 +23,19 @@ trait HasSeo
             } else {
                 $seo->slug .= $model->{$model->primaryKey};
             }
-            if ((empty($seo->title) || $options->overwriteOnUpdate) && isset($options->titleField)) {
-                $seo->title = $model->{$options->titleField};
+            if (($title = request()->get('seo_title', false)) !== false) {
+                $seo->title = $title;
+            } else {
+                if ((empty($seo->title) || $options->overwriteOnUpdate) && isset($options->titleField)) {
+                    $seo->title = $model->{$options->titleField};
+                }
             }
-            if ((empty($seo->description) || $options->overwriteOnUpdate) && isset($options->descriptionField)) {
-                $seo->description = $model->{$options->descriptionField};
+            if (($description = request()->get('seo_description', false)) !== false) {
+                $seo->description = $description;
+            } else {
+                if ((empty($seo->description) || $options->overwriteOnUpdate) && isset($options->descriptionField)) {
+                    $seo->description = $model->{$options->descriptionField};
+                }
             }
             $seo->save();
         });
@@ -39,6 +47,6 @@ trait HasSeo
 
     public function seo()
     {
-        return $this->hasOne(Seo::class, 'object_id');
+        return $this->hasOne(Seo::class, 'object_id')->where('type', static::class);
     }
 }

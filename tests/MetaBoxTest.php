@@ -52,4 +52,20 @@ class MetaBoxTest extends TestCase
 
         $this->assertTrue($modelB->seo->object_id == $modelB->id);
     }
+
+    /** @test */
+    public function testModel2ModelsWithTheSameID()
+    {
+        $modelB = new TestModelB();
+        $modelB->name = 'Test Example 1';
+        $modelB->save();
+
+        $modelA = new TestModelA();
+        $modelA->name = 'Test Example 2';
+        $modelA->save();
+
+        $this->assertTrue($modelB->seo->id != $modelA->seo->id);
+        $this->assertTrue($modelB->id == $modelA->id);
+        $this->assertTrue($modelA->seo->title == $modelB->seo->title);
+    }
 }
