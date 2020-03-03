@@ -64,29 +64,29 @@ class SeoViewTest extends TestCase
     public function testRouteHasDefaultSeo()
     {
         $this->get('test-no-custom-seo')
-            ->assertSee('<title>Laravel</title>')
-            ->assertSee('<meta name="twitter:card" content="summary">')
-            ->assertSee('<meta property="og:type" content="article" />');
+            ->assertSee('<title>Laravel</title>', false)
+            ->assertSee('<meta name="twitter:card" content="summary">', false)
+            ->assertSee('<meta property="og:type" content="article" />', false);
     }
 
     /** @test */
     public function testRouteHasModelSeo()
     {
         $this->get('test')
-            ->assertSee('<title>Example Title - Laravel</title>')
-            ->assertSee('<meta name="twitter:card" content="summary">')
-            ->assertSee('<meta property="og:description" content="Example Description" />')
-            ->assertSee('<meta property="og:type" content="article" />');
+            ->assertSee('<title>Example Title - Laravel</title>', false)
+            ->assertSee('<meta name="twitter:card" content="summary">', false)
+            ->assertSee('<meta property="og:description" content="Example Description" />', false)
+            ->assertSee('<meta property="og:type" content="article" />', false);
     }
 
     /** @test */
     public function testRouteHasModelSeoForPaginatedRequest()
     {
         $this->get('test?page=2')
-            ->assertSee('<title>Example Title - Laravel</title>')
-            ->assertSee('<meta name="twitter:card" content="summary">')
-            ->assertSee('<meta property="og:description" content="Example Description" />')
-            ->assertSee('<meta property="og:type" content="article" />');
+            ->assertSee('<title>Example Title - Laravel</title>', false)
+            ->assertSee('<meta name="twitter:card" content="summary">', false)
+            ->assertSee('<meta property="og:description" content="Example Description" />', false)
+            ->assertSee('<meta property="og:type" content="article" />', false);
     }
 
     /** @test */
